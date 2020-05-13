@@ -1,0 +1,20 @@
+# FOLDERS
+node_modules/
+.idea/
+.vscode/
+vendor/
+bin/
+public/*
+uploaded_imgs/
+logs/
+imgs/
+
+
+# FILES
+.env
+*.log
+npm-debug.*
+debug.*
+dump.*
+public/*.html
+schema.json
