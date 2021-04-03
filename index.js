@@ -24,8 +24,20 @@ fastify.get('/cv/visitcounter', function (request, reply) {
     
 });
 
+
+fastify.get("/", function (request, reply) {
+    reply.send("dd");
+});
+fastify.get("/ciao", function (request, reply) {
+    reply.send("ciao");
+});
+fastify.get("/ping", function (request, reply) {
+    reply.send("pong");
+});
+
+
 // Run the server!
-fastify.listen(3000, function (err, address) {
+fastify.listen(config.HTTP_PORT, function (err, address) {
     if (err) {
         fastify.log.error(err)
         process.exit(1)
@@ -33,3 +45,5 @@ fastify.listen(3000, function (err, address) {
     // fastify.log.info(`server listening on ${address}`)
     console.log(`server listening on ${address}`);
 });
+
+console.log("ok")
