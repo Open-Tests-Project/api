@@ -13,6 +13,24 @@ const fastify = require('fastify')({
 fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
 
+fastify.setErrorHandler(function (error, request, reply) {
+
+    if (error.validation) {
+        return reply.status(400).send(error);
+    }
+
+    const IS_PROD = false;
+    if (IS_PROD) {
+        reply.code(418).send({msg: "generic"});
+    } else {
+        reply.status(500).send(error);
+    }
+})
+
+fastify.ready(() => {
+    console.log(fastify.printRoutes())
+});
+
 
 // Run the server!
 fastify.listen(config.HTTP_PORT, function (err, address) {
