@@ -19,7 +19,7 @@ client.on("ready", function(error) {
     console.error("redis is ready");
 });
 client.on("connect", function(error) {
-    console.error("resid is connected");
+    console.error("redis is connected");
 });
 client.on("end", function () {
     console.log("redis connection has closed");

@@ -5,13 +5,17 @@ var path = require("path");
 var config = require(path.resolve(process.cwd(), "config"));
 
 
-
 const fastify = require('fastify')({
     logger: false
 });
 
+fastify.register(require("fastify-jwt"), {
+    secret: config.JWT_SECRET
+})
+
 fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
+
 
 fastify.setErrorHandler(function (error, request, reply) {
 
@@ -26,6 +30,15 @@ fastify.setErrorHandler(function (error, request, reply) {
         reply.status(500).send(error);
     }
 })
+
+fastify.decorate("authenticate", async function(request, reply) {
+    try {
+        await request.jwtVerify()
+    } catch (err) {
+        reply.send(err)
+    }
+})
+
 
 fastify.ready(() => {
     console.log(fastify.printRoutes())

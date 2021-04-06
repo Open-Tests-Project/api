@@ -12,6 +12,7 @@ imgs/
 
 # FILES
 .env
+*.key
 *.log
 npm-debug.*
 debug.*

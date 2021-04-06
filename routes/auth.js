@@ -3,7 +3,6 @@
 var path = require("path");
 var schemas = require(path.resolve(process.cwd(), "schemas"));
 var dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
-console.log(dataAccess);
 
 async function routes (fastify, options) {
 
@@ -22,12 +21,9 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
 
-
         const user = await dataAccess.user.create(request.body)
-        // const token = newToken(user)
-        // return reply.status(201).send({ token })
-        reply.send(user);
-
+        const token = fastify.jwt.sign({ user })
+        return reply.status(201).send({ token })
 
     });
 }
