@@ -925,10 +925,10 @@ netmask@^2.0.1:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.1.tgz#5a5cbdcbb7b6de650870e15e83d3e9553a414cf4"
   integrity sha512-gB8eG6ubxz67c7O2gaGiyWdRUIbH61q7anjgueDqCC9kvIs/b4CTtCMaQKeJbv1/Y7FT19I4zKwYmjnjInRQsg==
 
-node-redis-retry-strategy@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/node-redis-retry-strategy/-/node-redis-retry-strategy-1.0.11.tgz#78459da9ebd97ff3cbb83bb3fc212c97f9eb2654"
-  integrity sha512-XHigx97bwK1Y8IiszjiXDiX3pgShf8G3bAFmrA+lGhv9AxK8P+R/Iz6Vir5lvEaoebG1DPzMPXCRnMlVmDwM2A==
+node-redis-retry-strategy@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/node-redis-retry-strategy/-/node-redis-retry-strategy-2.1.1.tgz#eca46eb4ae098662866529d3fca1c8a7a0e85c04"
+  integrity sha512-RvUiD/NTr+gEW0p7IO8AI7fnQnKjXlh1EfAcCJiwk9F9yzTBMVuUWqkpU61DL/xku83r0gBlni7Yjbm2y3BeyA==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"

@@ -10,8 +10,9 @@ const fastify = require('fastify')({
     logger: false
 });
 
+fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
+fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
 
-fastify.register(require(path.resolve(process.cwd(), "routes")));
 
 // Run the server!
 fastify.listen(config.HTTP_PORT, function (err, address) {
