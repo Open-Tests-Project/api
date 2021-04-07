@@ -11,8 +11,12 @@ async function routes (fastify, options) {
         schema: {
             body: schemas.auth
         }
-    }, function (request, reply) {
-        reply.send("signin");
+    }, async function (request, reply) {
+
+        const user = await dataAccess.user.login(request.body);
+
+        const token = fastify.jwt.sign({ user });
+        return reply.status(201).send({ token });
     });
 
     fastify.post("/signup", {
@@ -21,9 +25,9 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
 
-        const user = await dataAccess.user.create(request.body)
-        const token = fastify.jwt.sign({ user })
-        return reply.status(201).send({ token })
+        const user = await dataAccess.user.create(request.body);
+        const token = fastify.jwt.sign({ user });
+        return reply.status(201).send({ token });
 
     });
 }

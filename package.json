@@ -18,7 +18,7 @@
     "stop": "pm2 stop pm2.prod.config.js && pm2 save",
     "reload": "pm2 reload pm2.prod.config.js && pm2 save && npm run log",
     "delete": "pm2 delete pm2.prod.config.js && pm2 save",
-    "start:dev": "pm2 start pm2.dev.config.js",
+    "start:dev": "pm2 start pm2.dev.config.js && npm run log",
     "stop:dev": "pm2 stop pm2.dev.config.js",
     "restart:dev": "pm2 restart pm2.dev.config.js && npm run log",
     "delete:dev": "pm2 delete pm2.dev.config.js"

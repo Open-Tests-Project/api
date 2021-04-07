@@ -1,10 +1,7 @@
 "use strict";
 
-
 var path = require("path");
 var config = require(path.resolve(process.cwd(), "config"));
-
-console.log(config)
 
 const fastify = require('fastify')({
     logger: false
@@ -22,6 +19,9 @@ fastify.setErrorHandler(function (error, request, reply) {
 
     if (error.validation) {
         return reply.status(400).send(error);
+    }
+    if (error.code === "WRONGPASS") {
+        return reply.status(401).send(error);
     }
 
     const IS_PROD = false;
