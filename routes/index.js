@@ -1,25 +1,17 @@
 "use strict";
 
 var path = require("path");
+var dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
 
 async function routes (fastify, options) {
 
     // http://zsimo.it/api/cv/visitcounter
     fastify.get('/cv/visitcounter', {
         preValidation: [fastify.authenticate]
-    }, function (request, reply) {
+    }, async function (request, reply) {
 
-        // redis.incr("cv/visitcounter", function (err, res) {
-        //
-        //     if (err) {
-        //         reply.code(400).send({'Bad request': ""})
-        //     } else {
-        //         reply.send({ visitcounter: res });
-        //     }
-        //
-        // });
-
-        reply.send({ visitcounter: 1 });
+        var counter = await dataAccess.utils.incr("cv/visitcounter");
+        reply.send({ visitcounter: counter });
 
     });
 

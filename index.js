@@ -20,7 +20,7 @@ fastify.setErrorHandler(function (error, request, reply) {
     if (error.validation) {
         return reply.status(400).send(error);
     }
-    if (error.code === "WRONGPASS") {
+    if (error.unauthorized) {
         return reply.status(401).send(error);
     }
 

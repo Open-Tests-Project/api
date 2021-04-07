@@ -14,9 +14,9 @@ async function routes (fastify, options) {
     }, async function (request, reply) {
 
         const user = await dataAccess.user.login(request.body);
-
-        const token = fastify.jwt.sign({ user });
+        const token = fastify.jwt.sign(user);
         return reply.status(201).send({ token });
+
     });
 
     fastify.post("/signup", {
@@ -26,7 +26,7 @@ async function routes (fastify, options) {
     }, async function (request, reply) {
 
         const user = await dataAccess.user.create(request.body);
-        const token = fastify.jwt.sign({ user });
+        const token = fastify.jwt.sign(user);
         return reply.status(201).send({ token });
 
     });
