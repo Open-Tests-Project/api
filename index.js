@@ -4,6 +4,7 @@
 var path = require("path");
 var config = require(path.resolve(process.cwd(), "config"));
 
+console.log(config)
 
 const fastify = require('fastify')({
     logger: false
