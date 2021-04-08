@@ -1,8 +1,10 @@
 
 "use strict";
 
+
 const path = require("path");
 const bcrypt = require("bcrypt");
+const config = require(path.resolve(process.cwd(), "config"));
 const redis = require(path.resolve(process.cwd(), "drivers", "redis"));
 const helpers = require(path.resolve(process.cwd(), "helpers"));
 const keysFactory = require(path.resolve(process.cwd(), "data_access", "redis", "keys_factory"));
@@ -10,6 +12,9 @@ const { promisify } = require("util");
 const INCR = promisify(redis.INCR).bind(redis);
 const HMSET = promisify(redis.HMSET).bind(redis);
 const HGETALL = promisify(redis.HGETALL).bind(redis);
+const axios = require('axios');
+
+
 
 
 async function create (payload) {
@@ -32,13 +37,43 @@ async function create (payload) {
         scope: payload.scope || [],
         role: payload.role || "user"
     }
-    console.log(newUser)
+
     await HMSET(userKey, newUser);
+
+
 }
 
 
-create({
-    email: "homeuser@email.com",
-    password: "home",
-    scope: "home"
-}).then();
+(async function () {
+
+    var payload = {
+        email: "cvuser@email.com",
+        password: "cv",
+        scope: "cv"
+    };
+
+    await create(payload);
+
+
+    axios({
+        url: config.BASE_URL + "/signin",
+        method: "post",
+        data: {
+            email: payload.email,
+            password: payload.password
+        }
+    })
+        .then(function (response) {
+            // handle success
+            console.log(response.status);
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error.response.status);
+            console.log(error.response.data);
+        })
+    ;
+
+})()
+
