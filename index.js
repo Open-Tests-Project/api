@@ -15,6 +15,21 @@ fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
 
 
+// fastify.register(require("fastify-cors"), {
+//     origin: (origin, cb) => {
+//         console.log(origin);
+//         if(!origin || /localhost/.test(origin)){
+//             //  Request from localhost will pass
+//             cb(null, true)
+//             return
+//         }
+//         // Generate an error on other origins, disabling access
+//         cb(new Error("Not allowed"))
+//     }
+// });
+
+
+
 fastify.setErrorHandler(function (error, request, reply) {
 
     if (error.validation) {
@@ -35,6 +50,25 @@ fastify.setErrorHandler(function (error, request, reply) {
 fastify.decorate("authenticate", async function(request, reply) {
     try {
         await request.jwtVerify()
+    } catch (err) {
+        reply.send(err)
+    }
+})
+fastify.decorate("authorize", async function(request, reply) {
+    try {
+        var user = request.user;
+        if (user.role === "admin") {
+            return;
+        }
+
+        const scope = user.scope.split(",") || [];
+        var page = request.params.page;
+        if (scope.indexOf(page) === -1) {
+            var error = new Error(`unauthorize`);
+            error.unauthorized = true;
+            throw error;
+        }
+
     } catch (err) {
         reply.send(err)
     }

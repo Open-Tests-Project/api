@@ -4,6 +4,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const redis = require(path.resolve(process.cwd(), "drivers", "redis"));
 const keysFactory = require(path.resolve(process.cwd(), "data_access", "redis", "keys_factory"));
+const helpers = require(path.resolve(process.cwd(), "helpers"));
 const { promisify } = require("util");
 const ACL = promisify(redis.ACL).bind(redis);
 const AUTH = promisify(redis.AUTH).bind(redis);
@@ -12,16 +13,7 @@ const INCR = promisify(redis.INCR).bind(redis);
 const HMSET = promisify(redis.HMSET).bind(redis);
 const HGETALL = promisify(redis.HGETALL).bind(redis);
 
-function _currentDatetime () {
-    var now = new Date();
-    return now.getFullYear() + "-" +
-        (parseInt(now.getMonth(), 10) + 1) + "-" +
-        now.getDate() + " " +
-        now.getHours().toString().padStart(2, '0') + ":" +
-        now.getMinutes().toString().padStart(2, '0') + ":" +
-        now.getSeconds().toString().padStart(2, '0');
 
-}
 
 module.exports = {
 
@@ -64,12 +56,14 @@ module.exports = {
             id: userId,
             email: payload.email,
             password: await bcrypt.hash(payload.password, 10),
-            created_at: _currentDatetime()
+            created_at: helpers.currentDatetime()
         }
         await HMSET(userKey, newUser);
         return {
             email: payload.email,
-            id: userId
+            id: userId,
+            role: "",
+            scope: ""
         };
 
     },
@@ -89,8 +83,10 @@ module.exports = {
             throw error;
         }
         return {
-            email: payload.email,
-            id: user.id
+            email: user.email,
+            id: user.id,
+            role: user.role,
+            scope: user.scope
         };
 
     },
