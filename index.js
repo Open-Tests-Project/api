@@ -1,15 +1,17 @@
 "use strict";
 
-var path = require("path");
-var config = require(path.resolve(process.cwd(), "config"));
+const path = require("path");
+const config = require(path.resolve(process.cwd(), "config"));
 
 const fastify = require('fastify')({
     logger: false
 });
 
+fastify.register(require("fastify-cookie"))
 fastify.register(require("fastify-jwt"), {
     secret: config.JWT_SECRET
 })
+
 
 fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
