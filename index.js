@@ -2,6 +2,7 @@
 
 const path = require("path");
 const config = require(path.resolve(process.cwd(), "config"));
+const shared = require(path.resolve(process.cwd(), "shared"));
 
 const fastify = require('fastify')({
     logger: false
@@ -9,7 +10,10 @@ const fastify = require('fastify')({
 
 fastify.register(require("fastify-cookie"))
 fastify.register(require("fastify-jwt"), {
-    secret: config.JWT_SECRET
+    secret: config.JWT_SECRET,
+    cookie: {
+        cookieName: shared.COOKIE_NAME
+    }
 })
 
 

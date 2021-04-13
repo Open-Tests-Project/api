@@ -17,6 +17,9 @@ const cookieOptions = {
     sameSite: true // alternative CSRF protection
 };
 const COOKIE_NAME = shared.COOKIE_NAME;
+const signOptions = {
+    expiresIn: "1d"
+};
 
 async function routes (fastify, options) {
 
@@ -28,7 +31,7 @@ async function routes (fastify, options) {
     }, async function (request, reply) {
 
         const user = await dataAccess.user.login(request.body);
-        const token = fastify.jwt.sign(user);
+        const token = fastify.jwt.sign(user, signOptions);
 
         if (request.params.type === "web") {
             reply.setCookie(COOKIE_NAME, token, cookieOptions);
@@ -45,11 +48,32 @@ async function routes (fastify, options) {
     }, async function (request, reply) {
 
         const user = await dataAccess.user.create(request.body);
-        const token = fastify.jwt.sign(user);
+        const token = fastify.jwt.sign(user, signOptions);
         if (request.params.type === "web") {
             reply.setCookie(COOKIE_NAME, token, cookieOptions);
         }
         return reply.status(201).send({ token });
+
+    });
+
+    fastify.get("/whoami", {
+        preValidation: [fastify.authenticate]
+    }, function (request, reply) {
+        const user = request.user;
+        reply.send({
+            email: user.email,
+            role: user.role,
+            scope: user.scope
+        });
+    });
+    fastify.get("/logout/web", {
+        preValidation: [fastify.authenticate]
+    }, function (request, reply) {
+        if (request.query.returnTo) {
+            reply.clearCookie(COOKIE_NAME, cookieOptions).redirect(request.query.returnTo);
+        } else {
+            reply.clearCookie(COOKIE_NAME, cookieOptions).status(205).send();
+        }
 
     });
 
