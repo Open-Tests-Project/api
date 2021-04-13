@@ -52,6 +52,7 @@ async function routes (fastify, options) {
         return reply.status(201).send({ token });
 
     });
+
 }
 
 

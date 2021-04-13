@@ -24,6 +24,17 @@ async function routes (fastify, options) {
 
     });
 
+    fastify.get("/whoami", {
+        preValidation: [fastify.authenticate]
+    }, function (request, reply) {
+        const user = request.user;
+        reply.send({
+            email: user.email,
+            role: user.role,
+            scope: user.scope
+        });
+    });
+
     fastify.get("/ping", function (request, reply) {
         reply.send("pong");
     });

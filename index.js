@@ -16,22 +16,6 @@ fastify.register(require("fastify-jwt"), {
 fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
 
-
-// fastify.register(require("fastify-cors"), {
-//     origin: (origin, cb) => {
-//         console.log(origin);
-//         if(!origin || /localhost/.test(origin)){
-//             //  Request from localhost will pass
-//             cb(null, true)
-//             return
-//         }
-//         // Generate an error on other origins, disabling access
-//         cb(new Error("Not allowed"))
-//     }
-// });
-
-
-
 fastify.setErrorHandler(function (error, request, reply) {
 
     if (error.validation) {

@@ -34,7 +34,7 @@ async function create (payload) {
         email: payload.email,
         password: await bcrypt.hash(payload.password, 10),
         created_at: helpers.currentDatetime(),
-        scope: payload.scope || [],
+        scope: payload.scope || "",
         role: payload.role || "user"
     }
 
@@ -47,9 +47,9 @@ async function create (payload) {
 (async function () {
 
     var payload = {
-        email: "cvuser@email.com",
-        password: "cv",
-        scope: "cv"
+        email: "simone",
+        password: "",
+        role: ""
     };
 
     await create(payload);
