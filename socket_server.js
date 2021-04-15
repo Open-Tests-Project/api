@@ -57,6 +57,28 @@ io.on("connection", function(socket) {
     })
 });
 
+io.use((socket, next) => {
+    console.log(1);
+    console.log(socket.request.headers.cookie);
+    next();
+    // if (isValid(socket.request)) {
+    //     next();
+    // } else {
+    //     next(new Error("invalid"));
+    // }
+});
+io.use((socket, next) => {
+    console.log(2);
+    var token = socket.request.headers.cookie["otp-token"];
+    // if the token is not valid
+    // next(new Error("unauthorized"));
+    // if (isValid(socket.request)) {
+    //     next();
+    // } else {
+    //     next(new Error("invalid"));
+    // }
+});
+
 
 server.listen(3002);
 console.log("socket server listen on 4444" );
