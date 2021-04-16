@@ -8,6 +8,7 @@
     "node-redis-retry-strategy": "^2.1.1",
     "pm2": "^4.5.6",
     "redis": "^3.1.0",
+    "redis-rejson": "^1.0.0",
     "socket.io": "^4.0.1"
   },
   "devDependencies": {

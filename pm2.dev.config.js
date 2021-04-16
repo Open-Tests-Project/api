@@ -10,7 +10,8 @@ module.exports = {
       "watch": true,
       "ignore_watch": [
           "node_modules",
-          "logs"
+          "logs",
+          ".git"
       ],
       "env": {
         "NODE_ENV": "development",

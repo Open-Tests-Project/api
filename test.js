@@ -1,7 +1,11 @@
 "use strict";
 
-const url = require('url');
-console.log(url.parse("https://dev.simonesacchi.com/api"))
+const path = require("path");
+const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
+
+dataAccess.test.create().then(function () {
+
+});
 
 // const axios = require('axios');
 

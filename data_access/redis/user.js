@@ -40,6 +40,8 @@ module.exports = {
         };
 
     },
+
+    
     create: async function (payload) {
 
         const userKey = keysFactory.user(payload.email);
@@ -66,12 +68,6 @@ module.exports = {
             scope: ""
         };
 
-    },
-
-    findOne: async function (email) {
-        var result = await ACL("GETUSER", email);
-
-        return result;
     },
 
 

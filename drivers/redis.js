@@ -5,6 +5,8 @@ var config = require(path.resolve(process.cwd(), "config"));
 
 var retryStrategy = require("node-redis-retry-strategy")();
 var redis = require("redis");
+var rejson = require("redis-rejson");
+rejson(redis);
 
 var redisOptions = {
     retry_strategy: retryStrategy,

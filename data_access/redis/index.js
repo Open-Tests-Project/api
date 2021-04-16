@@ -4,6 +4,7 @@ var path = require("path");
 var redis = require(path.resolve(process.cwd(), "drivers", "redis"));
 const { promisify } = require("util");
 const INCR = promisify(redis.INCR).bind(redis);
+const quit = promisify(redis.quit).bind(redis);
 
 module.exports = {
     utils: {
@@ -11,5 +12,7 @@ module.exports = {
             return await INCR(key);
         }
     },
-    user: require("./user")
+    user: require("./user"),
+    test: require("./test"),
+    quitConnection: quit
 };
