@@ -13,6 +13,6 @@ module.exports = {
         }
     },
     user: require("./user"),
-    test: require("./test"),
+    tests: require("./tests"),
     quitConnection: quit
 };
