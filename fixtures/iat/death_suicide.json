@@ -1,0 +1,73 @@
+
+{
+  "ENG" : {
+
+    "enter_the_name" : "Enter the name of the participant:",
+    "partecipant_name_title" : "Participant's name:",
+    "start_button" : "Start",
+    "type" : "Implicit Association Test",
+    "title" : "Death - Suicide IAT",
+    "left" : "left",
+    "right" : "right",
+    "continue_button" : "Continue",
+    "unknown" : "unknown",
+    "attribute_A" : [
+      "I",
+      "Myself",
+      "Self",
+      "Mine",
+      "My"
+    ],
+    "attribute_B" : [
+      "They",
+      "Them",
+      "Their",
+      "Other",
+      "Theirs"
+    ],
+    "target_A" : [
+      "Die",
+      "Dead",
+      "Deceased",
+      "Lifeless",
+      "Suicide"
+    ],
+    "target_B" : [
+      "Alive",
+      "Thrive",
+      "Live",
+      "Breathing",
+      "Survive"
+    ],
+    "attribute_A_label": "ME",
+    "attribute_B_label": "NOT ME",
+    "target_A_label" : "DEATH",
+    "target_B_label" : "LIFE",
+    "or" : "or"
+  ,"intro1" : "Words representing the categories at the top will appear one-by-one in the middle of the screen. When the item belongs to a category on the left, press the button on the left; when the item belongs to a category on the right, press the button on the right. Items belong to only one category. If you make an error, an X will appear - fix the error by hitting the other button.\n\nThis is a timed sorting task.\nGO AS FAST AS YOU CAN while making as few mistakes as possible. Going too slow or making too many errors will result in an uninterpretable score. This task will take about 5 minutes to complete."
+  ,"intro2" : "See above, the categories have changed. The items for sorting have changed as well. The rules, however, are the same.\n\nWhen the item belongs to a category on the left, press the button on the left; when the item belongs to a category on the right, press the button on the right. Items belong to only one category. An X appears after an error - fix the error by hitting the other button. GO AS FAST AS YOU CAN."
+  ,"intro3" : "See above, the four categories you saw separately now appear together.\nRemember, each item belongs to only one group. For example, if the categories male and career appeared on the separate sides above - words meaning male would go in the male category, not the career category.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and the right button to categorize items into four groups left and right, and correct errors by hitting the other button."
+  ,"intro4" : "Sort the same four categories again. Remember to go as fast as you can while making as few mistakes as possible.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+  ,"intro5" : "Notice above, there are only two categories and they have switched positions. The concept that was previously on the left is now on the right, and the concept that was on the right is now on the left. Practice this new configuration.\n\nUse the left button and right button to categorize items left and right,and correct errors by hitting the other button."
+  ,"intro6" : "See above, the four categories now appear together in a new configuration. Remember, each item belongs to only one group.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+  ,"intro7" : "Sort the same four categories again. Remember to go as fast as you can while making as few mistakes as possible.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+
+  ,"your_d_score_is" : "Your IAT score (D-score) is:"
+
+  ,"which_suggests" : "which suggests "
+  ,"final_text_01" : "a strong automatic association of Male with Career and Female with Family."
+  ,"final_text_02" : "a moderate automatic association of Male with Career and Female with Family."
+  ,"final_text_03" : "a slight automatic association of Male with Career and Female with Family."
+  ,"final_text_04" : "a little to no automatic preference between gender and family or career."
+  ,"final_text_05" : "a slight automatic association of Male with Family and Female with Career."
+  ,"final_text_06" : "a moderate automatic association of Male with Family and Female with Career."
+  ,"final_text_07" : "a strong automatic association of Male with Family and Female with Career."
+
+  ,"link_text" : "For further information, please visit the Project Implicit website:<br>https://implicit.harvard.edu/implicit/"
+
+  ,"test_not_valid" : "Test not valid: there were too many errors to determine a result."
+
+  }
+
+}
+

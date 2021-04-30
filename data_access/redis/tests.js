@@ -11,13 +11,14 @@ const HGETALL = promisify(redis.HGETALL).bind(redis);
 const JSON_GET = promisify(redis.json_get).bind(redis);
 const JSON_SET = promisify(redis.json_set).bind(redis);
 
-//"user:1000:followers"
-
 module.exports = {
 
 
-    create: async function (payload) {
+    create: async function (options) {
 
+        var key = keysFactory.test(options.test_name, options.user_id);
+        var path = ".";
+        var r = await JSON_SET(key, path, JSON.stringify(options.payload));
 
         //
         // var t = {
@@ -31,12 +32,14 @@ module.exports = {
         // r = await HGETALL("available_tests");
         // console.log(r)
 
-        var path = ".";
-        var r = await JSON_SET("object23", path, JSON.stringify({"status": "ok", "uno": 1, "a": {}}));
-        console.log(r);
-        r = await JSON_GET("object23");
-        console.log(r);
+        // var r = await JSON_SET("object23", path, JSON.stringify({"status": "ok", "uno": 1, "a": {}}));
+        // r = await JSON_GET("object23");
+        // console.log(JSON.parse(r));
 
+    },
+    get: async function (options) {
+        var key = keysFactory.test(options.test_name, options.user_id);
+        return JSON.parse(await JSON_GET(key));
     },
     add: async function (testName) {
         await SADD(keysFactory.static.AVAILABLE_TESTS, testName);

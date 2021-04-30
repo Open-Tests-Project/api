@@ -1,0 +1,80 @@
+{
+  "ENG" : {
+
+    "enter_the_name" : "Enter the name of the participant:",
+    "partecipant_name_title" : "Participant's name:",
+    "start_button" : "Start",
+    "type" : "Implicit Association Test",
+    "title" : "Transformational Leadership Implicit Morality",
+    "left" : "left",
+    "right" : "right",
+    "continue_button" : "Continue",
+    "unknown" : "unknown",
+
+    "attribute_A" : [
+      "Ethical",
+      "Moral",
+      "Honest",
+      "Respected",
+      "Attentive",
+      "Optimistic",
+      "Supportive",
+      "Considerate"
+    ],
+    "attribute_B" : [
+      "Selfish",
+      "Corrupt",
+      "Feared",
+      "Dominant",
+      "Coercive",
+      "Exploitative",
+      "Manipulative",
+      "Abusive"
+    ],
+    "target_A" : [
+      "Me",
+      "Self",
+      "My",
+      "Mine",
+      "I"
+    ],
+    "target_B" : [
+      "They",
+      "Them",
+      "Their",
+      "Others",
+      "Theirs"
+
+    ],
+    "attribute_A_label": "Moral",
+    "attribute_B_label": "Immoral",
+    "target_A_label" : "Self",
+    "target_B_label" : "Other",
+    "or" : "or"
+  ,"intro1" : "Words representing the categories at the top will appear one-by-one in the middle of the screen. When the item belongs to a category on the left, press the button on the left; when the item belongs to a category on the right, press the button on the right. Items belong to only one category. If you make an error, an X will appear - fix the error by hitting the other button.\n\nThis is a timed sorting task.\nGO AS FAST AS YOU CAN while making as few mistakes as possible. Going too slow or making too many errors will result in an uninterpretable score. This task will take about 5 minutes to complete."
+  ,"intro2" : "See above, the categories have changed. The items for sorting have changed as well. The rules, however, are the same.\n\nWhen the item belongs to a category on the left, press the button on the left; when the item belongs to a category on the right, press the button on the right. Items belong to only one category. An X appears after an error - fix the error by hitting the other button. GO AS FAST AS YOU CAN."
+  ,"intro3" : "See above, the four categories you saw separately now appear together.\nRemember, each item belongs to only one group. For example, if the categories Moral and Self appeared on the separate sides above - words meaning moral would go in the Moral category, not the Self category.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and the right button to categorize items into four groups left and right, and correct errors by hitting the other button."
+  ,"intro4" : "Sort the same four categories again. Remember to go as fast as you can while making as few mistakes as possible.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+  ,"intro5" : "Notice above, there are only two categories and they have switched positions. The concept that was previously on the left is now on the right, and the concept that was on the right is now on the left. Practice this new configuration.\n\nUse the left button and right button to categorize items left and right,and correct errors by hitting the other button."
+  ,"intro6" : "See above, the four categories now appear together in a new configuration. Remember, each item belongs to only one group.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+  ,"intro7" : "Sort the same four categories again. Remember to go as fast as you can while making as few mistakes as possible.\n\nThe green and white labels and items may help to identify the appropriate category. Use the left button and right button to categorize items into the four groups left and right, and correct errors by hitting the other button."
+
+  ,"your_d_score_is" : "Your IAT score (D-score) is:"
+
+  ,"which_suggests" : "which suggests "
+  ,"final_text_01" : "a strong automatic association of Moral with Self and Immoral with Other."
+  ,"final_text_02" : "a moderate automatic association of Moral with Self and Immoral with Other."
+  ,"final_text_03" : "a slight automatic association of Moral with Self and Immoral with Other."
+  ,"final_text_04" : "a little to no automatic preference between Moral or Immoral and Other or Self."
+  ,"final_text_05" : "a slight automatic association of Moral with Other and Immoral with Self."
+  ,"final_text_06" : "a moderate automatic association of Moral with Other and Immoral with Self."
+  ,"final_text_07" : "a strong automatic association of Moral with Other and Immoral with Self."
+
+  ,"link_text" : "For further information, please visit the Project Implicit website:<br>https://implicit.harvard.edu/implicit/"
+
+  ,"test_not_valid" : "Test not valid: there were too many errors to determine a result."
+
+  }
+
+}
+
