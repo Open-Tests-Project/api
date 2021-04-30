@@ -9,5 +9,15 @@ module.exports = {
             email : { type: 'string' },
             password: { type: 'string' }
         }
+    },
+    test: {
+        type: "object",
+        properties: {
+            name: {
+                type: "string",
+                minLength: 3,
+                maxLength: 256
+            }
+        }
     }
 };

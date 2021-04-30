@@ -36,9 +36,6 @@ const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
         console.log(JSON.stringify(iatTest, null, 2));
 
 
-
-
-
         await dataAccess.quitConnection();
     } catch (e) {
         console.error(e);
