@@ -17,6 +17,11 @@ module.exports = {
                 type: "string",
                 minLength: 3,
                 maxLength: 256
+            },
+            test_name: {
+                type: "string",
+                minLength: 3,
+                maxLength: 256
             }
         }
     }

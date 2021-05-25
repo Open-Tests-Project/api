@@ -14,5 +14,6 @@ module.exports = {
     },
     user: require("./user"),
     tests: require("./tests"),
+    study: require("./study"),
     quitConnection: quit
 };

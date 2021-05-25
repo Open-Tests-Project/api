@@ -6,25 +6,20 @@ const schemas = require(path.resolve(process.cwd(), "schemas"));
 
 async function routes (fastify, options) {
 
-    // http://zsimo.it/api/cv/visitcounter
-    fastify.get('/tests', {
-        preValidation: [fastify.authenticate, fastify.authorize]
-    }, async function (request, reply) {
-
-        var tests = await dataAccess.tests.list();
-        reply.send(tests);
-
-    });
-    fastify.get('/test/:name', {
+    fastify.post('/study/:test_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: {
             params: schemas.test
         }
     }, async function (request, reply) {
-        var test = await dataAccess.tests.get({
-            test_name: request.params.name
-        });
-        reply.send(test || {});
+
+        var options = {
+            payload: request.body
+        };
+        options.user_id = request.user.id;
+        var r = await dataAccess.study.create(options);
+
+        reply.send(r);
 
     });
 
