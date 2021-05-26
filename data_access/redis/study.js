@@ -10,25 +10,28 @@ const JSON_SET = promisify(redis.json_set).bind(redis);
 
 module.exports = {
 
-
     create: async function (options) {
-
 
         var key = keysFactory.test(options.payload.test_name, options.user_id);
         var studies = await JSON_GET(key);
+        var studyName = options.payload.study_name;
+        delete options.payload.test_name;
+        delete options.payload.study_name;
         var path;
         if (studies) {
-            path = options.payload.study_name;
-            await JSON_SET(key, path, JSON.stringify(options.payload));
+            path = studyName;
+            await JSON_SET(key, path, JSON.stringify(options.payload[studyName]));
         } else {
             path = "."
-            var payload = {};
-            payload[options.payload.study_name] = options.payload;
-            await JSON_SET(key, path, JSON.stringify(payload));
+            await JSON_SET(key, path, JSON.stringify(options.payload));
         }
 
+        return options.payload;
 
+    },
+    read: async function (options) {
+        var key = keysFactory.test(options.test_name, options.user_id);
         return JSON.parse(await JSON_GET(key));
-
     }
+
 };

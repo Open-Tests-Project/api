@@ -85,5 +85,5 @@ module.exports = {
             scope: user.scope
         };
 
-    },
+    }
 };

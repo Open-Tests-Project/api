@@ -37,7 +37,7 @@ module.exports = {
         // console.log(JSON.parse(r));
 
     },
-    get: async function (options) {
+    read: async function (options) {
         var key = keysFactory.test(options.test_name, options.user_id);
         return JSON.parse(await JSON_GET(key));
     },

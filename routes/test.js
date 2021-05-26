@@ -21,7 +21,7 @@ async function routes (fastify, options) {
             params: schemas.test
         }
     }, async function (request, reply) {
-        var test = await dataAccess.tests.get({
+        var test = await dataAccess.tests.read({
             test_name: request.params.name
         });
         reply.send(test || {});

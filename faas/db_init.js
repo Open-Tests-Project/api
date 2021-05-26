@@ -16,7 +16,7 @@ const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
         }
         console.log("available_tests", await dataAccess.tests.list());
 
-        var iatTest = await dataAccess.tests.get({
+        var iatTest = await dataAccess.tests.read({
             test_name: IAT
         });
         if (!iatTest) {
@@ -30,7 +30,7 @@ const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
             })
         }
 
-        iatTest = await dataAccess.tests.get({
+        iatTest = await dataAccess.tests.read({
             test_name: IAT
         });
         console.log(JSON.stringify(iatTest, null, 2));
