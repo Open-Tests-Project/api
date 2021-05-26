@@ -7,7 +7,7 @@ const schemas = require(path.resolve(process.cwd(), "schemas"));
 async function routes (fastify, options) {
 
     // http://zsimo.it/api/cv/visitcounter
-    fastify.get('/tests', {
+    fastify.get('/test', {
         preValidation: [fastify.authenticate, fastify.authorize]
     }, async function (request, reply) {
 

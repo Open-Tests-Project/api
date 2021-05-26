@@ -17,9 +17,25 @@ async function routes (fastify, options) {
             payload: request.body
         };
         options.user_id = request.user.id;
-        var r = await dataAccess.study.create(options);
 
-        reply.send(r);
+        var result = await dataAccess.study.create(options);
+        reply.send(result);
+
+    });
+
+    fastify.get('/study/:test_name', {
+        preValidation: [fastify.authenticate, fastify.authorize],
+        schema: {
+            params: schemas.test
+        }
+    }, async function (request, reply) {
+        var options = {
+            test_name: request.params.test_name
+        };
+        options.user_id = request.user.id;
+
+        var result = await dataAccess.study.read(options);
+        reply.send(result);
 
     });
 
