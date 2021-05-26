@@ -13,7 +13,8 @@ module.exports = {
         }
     },
     user: require("./user"),
-    tests: require("./tests"),
+    test: require("./test"),
     study: require("./study"),
     quitConnection: quit
+
 };

@@ -8,13 +8,13 @@ const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
 
     try {
         const IAT = "iat";
-        var availableTests = await dataAccess.tests.list();
+        var availableTests = await dataAccess.test.list();
         if (availableTests.length === 0) {
 
-            await dataAccess.tests.add(IAT);
+            await dataAccess.test.add(IAT);
 
         }
-        console.log("available_tests", await dataAccess.tests.list());
+        console.log("available_tests", await dataAccess.test.list());
 
         var iatTest = await dataAccess.tests.read({
             test_name: IAT

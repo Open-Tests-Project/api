@@ -11,7 +11,7 @@ async function routes (fastify, options) {
         preValidation: [fastify.authenticate, fastify.authorize]
     }, async function (request, reply) {
 
-        var tests = await dataAccess.tests.list();
+        var tests = await dataAccess.test.list();
         reply.send(tests);
         
     });
@@ -21,7 +21,7 @@ async function routes (fastify, options) {
             params: schemas.test
         }
     }, async function (request, reply) {
-        var test = await dataAccess.tests.read({
+        var test = await dataAccess.test.read({
             test_name: request.params.name
         });
         reply.send(test || {});
