@@ -9,10 +9,11 @@ const config = require(path.resolve(process.cwd(), "config"));
 const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
 
 const HOST = url.parse(config.BASE_URL).host;
+const PROTOCOL = url.parse(config.BASE_URL).protocol;
 const cookieOptions = {
     domain: HOST,
     path: '/',
-    secure: true, // send cookie over HTTPS only
+    secure: PROTOCOL === "https" ? true : false, // send cookie over HTTPS only
     httpOnly: true,
     sameSite: true // alternative CSRF protection
 };
