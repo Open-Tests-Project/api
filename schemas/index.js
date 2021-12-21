@@ -57,5 +57,37 @@ module.exports = {
             }
         },
         additionalProperties: false
+    },
+    rename_study: {
+        params: {
+            type: "object",
+            required: ["test_name", "old_name"],
+            properties: {
+                test_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+                old_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                }
+            },
+            additionalProperties: false
+        },
+        body: {
+            type: "object",
+            required: ["new_name"],
+            properties: {
+                new_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                }
+            },
+            additionalProperties: false
+        }
     }
+
 };
