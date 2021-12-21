@@ -27,6 +27,20 @@ module.exports = {
         },
         additionalProperties: false
     },
+    create_study: {
+        type: "object",
+        required: ["test_name"],
+        properties: {
+            test_name: {
+                type: "string",
+                minLength: 3,
+                maxLength: 256
+            }
+        },
+        body: {
+            type: "object"
+        }
+    },
     delete_study: {
         type: "object",
         required: ["study_name", "test_name"],

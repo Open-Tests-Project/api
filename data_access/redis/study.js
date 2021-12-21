@@ -14,19 +14,18 @@ module.exports = {
 
     create: async function (options) {
 
-        var key = keysFactory.test(options.payload.test_name, options.user_id);
+        var testName = options.test_name;
+        var key = keysFactory.test(testName, options.user_id);
         var studies = await JSON_GET(key);
-        var studyName = options.payload.study_name;
-        delete options.payload.test_name;
-        delete options.payload.study_name;
+        var studyName = Object.keys(options.new_study)[0];
 
         var path;
         if (studies !== "null") {
             path = studyName;
-            await JSON_SET(key, path, JSON.stringify(options.payload[studyName]));
+            await JSON_SET(key, path, JSON.stringify(options.new_study[studyName]));
         } else {
             path = ".";
-            await JSON_SET(key, path, JSON.stringify(options.payload));
+            await JSON_SET(key, path, JSON.stringify(options.new_study));
         }
 
         return JSON.parse(await JSON_GET(key));
@@ -44,7 +43,7 @@ module.exports = {
         }
         var path = "." + options.study_name;
         await JSON_DEL(key, path)
-        
+
         return JSON.parse(await JSON_GET(key))
     },
 

@@ -8,14 +8,13 @@ async function routes (fastify, options) {
 
     fastify.post('/study/:test_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
-        schema: {
-            params: schemas.test
-        }
+        schema: schemas.create_study
     }, async function (request, reply) {
 
         var options = {
-            payload: request.body,
-            user_id: request.user.id
+            new_study: request.body,
+            user_id: request.user.id,
+            test_name: request.params.test_name
         };
 
         var result = await dataAccess.study.create(options);
