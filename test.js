@@ -11,6 +11,8 @@ const JSON_GET = promisify(redis.json_get).bind(redis);
 const JSON_SET = promisify(redis.json_set).bind(redis);
 const JSON_TYPE = promisify(redis.json_type).bind(redis);
 const JSON_RESP = promisify(redis.json_resp).bind(redis);
+// multiple get
+const JSON_MGET = promisify(redis.json_mget).bind(redis);
 
 //
 
@@ -31,14 +33,23 @@ async function main () {
     };
     var key = "object23";
     var path = ".";
-    await JSON_SET(key, path, JSON.stringify(t));
-    await JSON_SET(key, "a.b", JSON.stringify({d:2}));
-    var r = await JSON_GET(key, "a.b");
-    console.log(JSON.stringify(JSON.parse(r), null, 2));
-    console.log(await JSON_RESP(key, "."));
+    // await JSON_SET(key, path, JSON.stringify(t));
+    // await JSON_SET(key, "a.b", JSON.stringify({d:2}));
+    // var r = await JSON_GET(key, "a.b");
+    // console.log(JSON.stringify(JSON.parse(r), null, 2));
+    // console.log(await JSON_RESP(key, "."));
 
     // await JSON_SET("scalar ", ".", "ciao");
     // console.log(await JSON_GET("object24"));
+
+    await JSON_SET(key, path, JSON.stringify({uno: "uno"}))
+    var r = await JSON_MGET(key, path);
+    console.log(r);
+
+    key = "test:iat:user=1";
+    var r = await JSON_GET(key);
+    console.log(r);
+
 }
 
 

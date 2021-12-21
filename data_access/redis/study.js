@@ -6,7 +6,9 @@ const keysFactory = require(path.resolve(process.cwd(), "data_access", "redis", 
 const { promisify } = require("util");
 
 const JSON_GET = promisify(redis.json_get).bind(redis);
+// const JSON_MGET = promisify(redis.json_mget).bind(redis);
 const JSON_SET = promisify(redis.json_set).bind(redis);
+const JSON_DEL = promisify(redis.json_del).bind(redis);
 
 module.exports = {
 
@@ -18,11 +20,12 @@ module.exports = {
         delete options.payload.test_name;
         delete options.payload.study_name;
         var path;
+
         if (studies) {
             path = studyName;
             await JSON_SET(key, path, JSON.stringify(options.payload[studyName]));
         } else {
-            path = "."
+            path = ".";
             await JSON_SET(key, path, JSON.stringify(options.payload));
         }
 
@@ -32,6 +35,18 @@ module.exports = {
     read: async function (options) {
         var key = keysFactory.test(options.test_name, options.user_id);
         return JSON.parse(await JSON_GET(key));
-    }
+    },
+    delete: async function (options) {
+        var key = keysFactory.test(options.test_name, options.user_id);
+        if (!options.study_name) {
+            throw new Error("invalid study_name: " + options.study_name);
+        }
+        var path = "." + options.study_name;
+        await JSON_DEL(key, path)
+
+        // console.log(JSON.parse(await JSON_GET(key)));
+        // console.log(await JSON_MGET(key, "."));
+        return JSON.parse(await JSON_GET(key))
+    },
 
 };

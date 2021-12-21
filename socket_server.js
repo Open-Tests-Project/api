@@ -37,7 +37,8 @@
 // });
 // console.log("socket server listen on " + 4444);
 
-
+const path = require("path");
+const shared = require(path.resolve(process.cwd(), "shared"));
 var server = require("http").Server();
 var io = require("socket.io")(server);
 
@@ -53,7 +54,7 @@ io.on("connection", function(socket) {
 
     socket.on("READ_USER", function () {
         var user = {"email":"simone","role":"admin","scope":""};
-        socket.emit("READ_USER_RESULT", user)
+        socket.emit("READ_USER" + shared.DATA_ACCESS_RESULT, user)
     })
 });
 

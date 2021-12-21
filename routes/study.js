@@ -14,9 +14,9 @@ async function routes (fastify, options) {
     }, async function (request, reply) {
 
         var options = {
-            payload: request.body
+            payload: request.body,
+            user_id: request.user.id
         };
-        options.user_id = request.user.id;
 
         var result = await dataAccess.study.create(options);
         reply.send(result);
@@ -30,11 +30,28 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
         var options = {
-            test_name: request.params.test_name
+            test_name: request.params.test_name,
+            user_id: request.user.id
         };
-        options.user_id = request.user.id;
 
         var result = await dataAccess.study.read(options);
+        reply.send(result);
+
+    });
+    fastify.delete('/study/:test_name/:study_name', {
+        preValidation: [fastify.authenticate, fastify.authorize],
+        schema: {
+            params: schemas.test
+        }
+    }, async function (request, reply) {
+
+        var options = {
+            test_name: request.params.test_name,
+            study_name: request.params.study_name,
+            user_id: request.user.id
+        };
+
+        var result = await dataAccess.study.delete(options);
         reply.send(result);
 
     });
