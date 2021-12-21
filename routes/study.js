@@ -41,7 +41,7 @@ async function routes (fastify, options) {
     fastify.delete('/study/:test_name/:study_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: {
-            params: schemas.test
+            params: schemas.delete_study
         }
     }, async function (request, reply) {
 

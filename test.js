@@ -42,13 +42,14 @@ async function main () {
     // await JSON_SET("scalar ", ".", "ciao");
     // console.log(await JSON_GET("object24"));
 
-    await JSON_SET(key, path, JSON.stringify({uno: "uno"}))
-    var r = await JSON_MGET(key, path);
-    console.log(r);
+    // await JSON_SET(key, path, JSON.stringify({uno: "uno"}))
+    // var r = await JSON_MGET(key, path);
+    // console.log(r);
+
 
     key = "test:iat:user=1";
-    var r = await JSON_GET(key);
-    console.log(r);
+    var r = JSON.parse(await JSON_GET(key, "ciccio"));
+    console.log(typeof r);
 
 }
 

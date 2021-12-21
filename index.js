@@ -66,6 +66,12 @@ fastify.decorate("authorize", async function(request, reply) {
     }
 })
 
+// fastify.addHook('onError', async (request, reply, error) => {
+//     // Useful for custom error logging
+//     // You should not use this hook to update the error
+//     console.log("@@@@@@@")
+// })
+
 
 fastify.ready(() => {
     console.log(fastify.printRoutes())

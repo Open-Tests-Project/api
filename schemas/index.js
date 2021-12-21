@@ -8,7 +8,8 @@ module.exports = {
         properties: {
             email : { type: 'string' },
             password: { type: 'string' }
-        }
+        },
+        additionalProperties: false
     },
     test: {
         type: "object",
@@ -23,6 +24,24 @@ module.exports = {
                 minLength: 3,
                 maxLength: 256
             }
-        }
+        },
+        additionalProperties: false
+    },
+    delete_study: {
+        type: "object",
+        required: ["study_name", "test_name"],
+        properties: {
+            study_name: {
+                type: "string",
+                minLength: 3,
+                maxLength: 256
+            },
+            test_name: {
+                type: "string",
+                minLength: 3,
+                maxLength: 256
+            }
+        },
+        additionalProperties: false
     }
 };
