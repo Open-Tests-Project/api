@@ -6,6 +6,7 @@ const schemas = require(path.resolve(process.cwd(), "schemas"));
 
 async function routes (fastify, options) {
 
+    // create new study
     fastify.post('/study/:test_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.create_study
@@ -54,6 +55,23 @@ async function routes (fastify, options) {
         reply.send(result);
 
     });
+    // rename study
+    fastify.put('/study/:test_name/:old_name', {
+        preValidation: [fastify.authenticate, fastify.authorize],
+        schema: schemas.rename_study
+    }, async function (request, reply) {
+        var options = {
+            test_name: request.params.test_name,
+            old_name: request.params.old_name,
+            new_name: request.body.new_name,
+            user_id: request.user.id
+        };
+
+        var result = await dataAccess.study.rename(options);
+        reply.send(result);
+
+    });
+    // update study
     fastify.put('/study/:test_name/:old_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.rename_study

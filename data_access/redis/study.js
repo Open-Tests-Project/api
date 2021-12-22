@@ -59,5 +59,16 @@ module.exports = {
             new_name: options.new_name
         };
     },
+    update: async function (options) {
+        var key = keysFactory.test(options.test_name, options.user_id);
+        var path = ".";
+        var studies = JSON.parse(await JSON_GET(key, path));
+        studies[options.new_name] = studies[options.old_name];
+        delete studies[options.old_name];
+        await JSON_SET(key, path, JSON.stringify(studies));
+        return {
+            new_name: options.new_name
+        };
+    },
 
 };
