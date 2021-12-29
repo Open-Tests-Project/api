@@ -7,6 +7,8 @@ module.exports = {
                                       user_id INTEGER NOT NULL,
                                       study_name TEXT UNIQUE NOT NULL);`,
         create: "INSERT INTO studies (user_id, study_name) VALUES (?, ?);",
+        // used in test only
+        // read: "SELECT * FROM studies;",
         delete: "DELETE FROM studies WHERE id = ?;"
     },
     tests: {
@@ -22,6 +24,8 @@ module.exports = {
                                           ON DELETE CASCADE);`,
         create: `INSERT INTO tests (study_id, test_name, test_type, test_lang, test_attributes)
                                     VALUES (?, ?, ?, ?, ?);`,
+        // used in test only
+        // read: "SELECT * FROM tests;",
         delete: "DELETE FROM tests WHERE study_id = ?;"
     },
     tests_studies: {

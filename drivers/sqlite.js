@@ -10,6 +10,8 @@ var db = new sqlite3.Database(sqliteFile, (err) => {
         throw err;
     }
 
+    db.get("PRAGMA foreign_keys = ON");
+
     // JSON1
     // https://www.sqlite.org/json1.html#jmini
     // db.run("DROP TABLE IF EXISTS studies");
@@ -17,7 +19,10 @@ var db = new sqlite3.Database(sqliteFile, (err) => {
     db.run(queries.tests.create_table_if_not_exists);
     db.run(queries.patients.create_table_if_not_exists);
 
+
 });
+
+
 
 
 // db.on("trace", function (query) {

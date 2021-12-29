@@ -14,6 +14,8 @@ const JSON_RESP = promisify(redis.json_resp).bind(redis);
 // multiple get
 const JSON_MGET = promisify(redis.json_mget).bind(redis);
 
+var dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
+
 //
 
 // var r = await HMSET("available_tests", t);
@@ -47,9 +49,35 @@ async function main () {
     // console.log(r);
 
 
-    key = "test:iat:user=1";
-    var r = JSON.parse(await JSON_GET(key, "ciccio"));
-    console.log(typeof r);
+    // key = "test:iat:user=1";
+    // var r = JSON.parse(await JSON_GET(key, "ciccio"));
+    // console.log(typeof r);
+
+
+    // ======================================================
+    var studyResult = await dataAccess.sqlite.study.create({
+        study_name: "ciccio"+Date.now(),
+        user_id: 1
+    });
+
+    await dataAccess.sqlite.test.create({
+        study_id: studyResult.lastID,
+        test_name: "iat",
+        test_type: "death_suicide",
+        lang: "eng",
+        attributes: {}
+    });
+
+    await dataAccess.sqlite.study.delete({
+        study_id: studyResult.lastID
+    });
+
+    var studies = await dataAccess.sqlite.study.read();
+    var tests = await dataAccess.sqlite.test.read();
+    console.log("studies", studies.length);
+    console.log("tests", tests.length);
+
+    process.exit(0);
 
 }
 

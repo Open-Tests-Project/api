@@ -28,6 +28,21 @@ module.exports = function (db) {
             });
 
         },
+        // used in test only
+        // read: function () {
+        //
+        //     return new Promise(function (resolve, reject) {
+        //         db.all(queries.tests.read, [],function (error, rows) {
+        //             if (error) {
+        //                 reject(error);
+        //             } else {
+        //                 resolve(rows)
+        //             }
+        //         });
+        //
+        //     });
+        //
+        // },
         delete: function (options) {
 
             return new Promise(function (resolve, reject) {
