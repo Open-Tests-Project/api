@@ -31,7 +31,7 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
 
-        const user = await dataAccess.user.login(request.body);
+        const user = await dataAccess.redis.user.login(request.body);
         const token = fastify.jwt.sign(user, signOptions);
 
         if (request.params.type === "web") {

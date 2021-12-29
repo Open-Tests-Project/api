@@ -27,33 +27,66 @@ module.exports = {
         },
         additionalProperties: false
     },
+    get_study: {
+        params: {
+            type: "object",
+            required: ["test_name", "test_type", "lang"],
+            properties: {
+                test_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+                test_type: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+                lang: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 3
+                }
+            },
+            additionalProperties: false
+        }
+    },
     create_study: {
-        type: "object",
-        required: ["test_name"],
-        properties: {
-            test_name: {
-                type: "string",
-                minLength: 3,
-                maxLength: 256
-            }
-        },
         body: {
-            type: "object"
+            type: "object",
+            required: ["study_name", "test_type", "lang", "test_name"],
+            properties: {
+                study_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+                test_type: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+                lang: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 3
+                },
+                test_name: {
+                    type: "string",
+                    minLength: 3,
+                    maxLength: 256
+                },
+            },
+            additionalProperties: false
         }
     },
     delete_study: {
         type: "object",
-        required: ["study_name", "test_name"],
+        required: ["study_id"],
         properties: {
-            study_name: {
-                type: "string",
-                minLength: 3,
-                maxLength: 256
-            },
-            test_name: {
-                type: "string",
-                minLength: 3,
-                maxLength: 256
+            study_id: {
+                type: "integer",
+                minimum: 1
             }
         },
         additionalProperties: false

@@ -8,10 +8,12 @@ public/*
 uploaded_imgs/
 logs/
 imgs/
+db/
 
 
 # FILES
 .env
+*.sqlite
 *.key
 *.log
 npm-debug.*

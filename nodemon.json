@@ -1,0 +1,10 @@
+{
+  "ignore": [
+    ".git/**",
+    "node_modules/**",
+    "docs/**",
+    "logs/**",
+    "*.sqlite"
+  ],
+  "ext": "js"
+}

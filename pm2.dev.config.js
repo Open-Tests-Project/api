@@ -6,13 +6,15 @@ module.exports = {
   apps: [
     {
       "name": "dev:" + config.APP_NAME + "-http",
-      "script": "./index.js",
-      "watch": true,
-      "ignore_watch": [
-          "node_modules",
-          "logs",
-          ".git"
-      ],
+      "script": "./node_modules/.bin/nodemon ./index.js --config nodemon.json",
+      // "ignore_watch": [
+      //     "node_modules",
+      //     "logs",
+      //     ".git",
+      //     "ciccio",
+      //     "db",
+      //     "db/db.sqlite-journal"
+      // ],
       "env": {
         "NODE_ENV": "development",
       },

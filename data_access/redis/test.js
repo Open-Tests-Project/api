@@ -44,6 +44,7 @@ module.exports = {
     add: async function (testName) {
         await SADD(keysFactory.static.AVAILABLE_TESTS, testName);
     },
+    // returns the list of available test names (e.g.: ['iat'])
     list: async function () {
         return await SMEMBERS(keysFactory.static.AVAILABLE_TESTS);
     }

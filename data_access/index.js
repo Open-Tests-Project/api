@@ -2,6 +2,8 @@
 
 const path = require("path");
 const DRIVER = "redis";
-const dataAccess = require(path.resolve(process.cwd(), "data_access", DRIVER, "index"));
 
-module.exports = dataAccess;
+module.exports = {
+    redis: require(path.resolve(process.cwd(), "data_access", "redis", "index")),
+    sqlite: require(path.resolve(process.cwd(), "data_access", "sqlite", "index"))
+};

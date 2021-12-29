@@ -10,7 +10,7 @@ async function routes (fastify, options) {
         preValidation: [fastify.authenticate, fastify.authorize]
     }, async function (request, reply) {
 
-        var counter = await dataAccess.utils.incr("cv/visitcounter");
+        var counter = await dataAccess.redis.utils.incr("cv/visitcounter");
         reply.send({ visitcounter: counter });
 
     });

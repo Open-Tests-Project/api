@@ -28,6 +28,24 @@ module.exports = {
         return test;
 
     },
+    study: function (userId, studyId = Date.now()) {
+
+        if (!userId) {
+            throw new Error("userId can not be empty");
+        }
+
+        return `study${SEPARATOR}user=${userId}${SEPARATOR}${studyId}`;
+
+    },
+    studies: function (userId) {
+
+        if (!userId) {
+            throw new Error("userId can not be empty");
+        }
+
+        return `study${SEPARATOR}user=${userId}${SEPARATOR}*`;
+
+    },
     static: static_keys
 
 };
