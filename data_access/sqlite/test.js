@@ -43,22 +43,22 @@ module.exports = function (db) {
         //     });
         //
         // },
-        delete: function (options) {
-
-            return new Promise(function (resolve, reject) {
-                db.run(queries.tests.delete, [
-                    options.study_id
-                ], function (error, a) {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(this)
-                    }
-                });
-
-            });
-
-        },
+        // delete: function (options) {
+        //
+        //     return new Promise(function (resolve, reject) {
+        //         db.run(queries.tests.delete, [
+        //             options.study_id
+        //         ], function (error, a) {
+        //             if (error) {
+        //                 reject(error);
+        //             } else {
+        //                 resolve(this)
+        //             }
+        //         });
+        //
+        //     });
+        //
+        // },
 
 
     };

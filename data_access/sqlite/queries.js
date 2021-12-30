@@ -26,7 +26,7 @@ module.exports = {
                                     VALUES (?, ?, ?, ?, ?);`,
         // used in test only
         // read: "SELECT * FROM tests;",
-        delete: "DELETE FROM tests WHERE study_id = ?;"
+        // delete: "DELETE FROM tests WHERE study_id = ?;"
     },
     tests_studies: {
         search: `SELECT s.id as study_id, s.study_name, t.study_id, t.test_name, t.test_type, t.test_lang, t.test_attributes

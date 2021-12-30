@@ -107,9 +107,6 @@ async function routes (fastify, options) {
             study_id: studyId
         };
         await dataAccess.sqlite.study.delete(options);
-        // todo simone FOREIGN KEY on tests does not work via node
-        // it works using DB browser desktop app
-        await dataAccess.sqlite.test.delete(options);
         reply.send(options);
 
     });
