@@ -32,7 +32,7 @@ module.exports = {
         // read: "SELECT * FROM tests;",
         // delete: "DELETE FROM tests WHERE study_id = ?;"
     },
-    tests_studies: {
+    studies_tests: {
         search: `SELECT s.id as study_id, s.study_name, t.study_id, t.test_name, t.test_type, t.test_lang, t.test_attributes
                     FROM tests t 
                     INNER JOIN studies s 

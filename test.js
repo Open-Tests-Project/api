@@ -55,12 +55,12 @@ async function main () {
 
 
     // ======================================================
-    var studyResult = await dataAccess.sqlite.study.create({
+    var studyResult = await dataAccess.sqlite.studies.create({
         study_name: "ciccio"+Date.now(),
         user_id: 1
     });
 
-    await dataAccess.sqlite.test.create({
+    await dataAccess.sqlite.tests.create({
         study_id: studyResult.lastID,
         test_name: "iat",
         test_type: "death_suicide",
@@ -68,12 +68,12 @@ async function main () {
         attributes: {}
     });
 
-    await dataAccess.sqlite.study.delete({
+    await dataAccess.sqlite.studies.delete({
         study_id: studyResult.lastID
     });
 
-    var studies = await dataAccess.sqlite.study.read();
-    var tests = await dataAccess.sqlite.test.read();
+    var studies = await dataAccess.sqlite.studies.read();
+    var tests = await dataAccess.sqlite.tests.read();
     console.log("studies", studies.length);
     console.log("tests", tests.length);
 

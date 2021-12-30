@@ -44,21 +44,6 @@ module.exports = function (db) {
             });
 
         },
-        // used in test only
-        // read: function (options) {
-        //
-        //     return new Promise(function (resolve, reject) {
-        //         db.all(queries.studies.read, [],function (error, rows) {
-        //             if (error) {
-        //                 reject(error);
-        //             } else {
-        //                 resolve(rows)
-        //             }
-        //         });
-        //
-        //     });
-        //
-        // },
         delete: function (options) {
 
             return new Promise(function (resolve, reject) {
@@ -76,30 +61,11 @@ module.exports = function (db) {
 
         },
 
-        // read_test: function (options) {
-        //
-        //     return new Promise(function (resolve, reject) {
-        //
-        //
-        //         db.run(queries.studies.read_test, [
-        //             options.user_id,
-        //             options.study_name
-        //         ], function (error, rows) {
-        //             if (error) {
-        //                 reject(error);
-        //             } else {
-        //                 resolve(this)
-        //             }
-        //         });
-        //
-        //     });
-        //
-        // },
         search: function (options) {
 
             return new Promise(function (resolve, reject) {
 
-                db.all(queries.tests_studies.search, [
+                db.all(queries.studies_tests.search, [
                     options.user_id,
                     options.test_name,
                     options.test_type,
@@ -125,7 +91,7 @@ module.exports = function (db) {
 
             return new Promise(function (resolve, reject) {
 
-                db.all(queries.tests_studies.search_by_study_id, [
+                db.all(queries.studies_tests.search_by_study_id, [
                     options.study_id
                 ], function (error, rows) {
                     if (error) {

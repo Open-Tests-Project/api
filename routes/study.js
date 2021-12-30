@@ -27,9 +27,9 @@ async function routes (fastify, options) {
 
 
         // old redis stuff
-        var result = await dataAccess.redis.study.create(redisOptions);
+        // var result = await dataAccess.redis.study.create(redisOptions);
 
-        var studyResult = await dataAccess.sqlite.study.create(createStudyOptions);
+        var studyResult = await dataAccess.sqlite.studies.create(createStudyOptions);
         var newStudyId = studyResult.lastID;
 
         var readAttributesOptions = {
@@ -44,10 +44,10 @@ async function routes (fastify, options) {
             lang: request.body.lang,
             attributes: await dataAccess.redis.study.readAttributes(readAttributesOptions)
         };
-        await dataAccess.sqlite.test.create(createTestOptions);
+        await dataAccess.sqlite.tests.create(createTestOptions);
 
         // read the just created study
-        var newStudy = await dataAccess.sqlite.study.search_by_id({
+        var newStudy = await dataAccess.sqlite.studies.search_by_id({
             study_id: newStudyId
         });
 
@@ -82,7 +82,7 @@ async function routes (fastify, options) {
         };
 
         var result = await dataAccess.redis.study.read(options);
-        var result = await dataAccess.sqlite.study.search(options);
+        var result = await dataAccess.sqlite.studies.search(options);
         reply.send(result);
 
     });
@@ -106,7 +106,7 @@ async function routes (fastify, options) {
         var options = {
             study_id: studyId
         };
-        await dataAccess.sqlite.study.delete(options);
+        await dataAccess.sqlite.studies.delete(options);
         reply.send(options);
 
     });
@@ -122,30 +122,11 @@ async function routes (fastify, options) {
             user_id: request.user.id
         };
         // var result = await dataAccess.redis.study.rename(options);
-        var result = await dataAccess.sqlite.study.rename(options);
-        // if (result.changes === "1") {
-        //
-        // }
+        var result = await dataAccess.sqlite.studies.rename(options);
         reply.send({
             study_id: result.lastID,
             study_name: options.study_name
         });
-
-    });
-    // update study
-    fastify.put('/study/:test_name/:old_name', {
-        preValidation: [fastify.authenticate, fastify.authorize],
-        schema: schemas.rename_study
-    }, async function (request, reply) {
-        var options = {
-            test_name: request.params.test_name,
-            old_name: request.params.old_name,
-            new_name: request.body.new_name,
-            user_id: request.user.id
-        };
-
-        var result = await dataAccess.redis.study.rename(options);
-        reply.send(result);
 
     });
 
