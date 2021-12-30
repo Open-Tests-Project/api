@@ -26,6 +26,24 @@ module.exports = function (db) {
             });
 
         },
+        rename: function (options) {
+
+            return new Promise(function (resolve, reject) {
+                db.run(queries.studies.rename, [
+                    options.study_name,
+                    options.study_id,
+                    options.user_id,
+                ], function (error, a) {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(this)
+                    }
+                });
+
+            });
+
+        },
         // used in test only
         // read: function (options) {
         //

@@ -111,19 +111,25 @@ async function routes (fastify, options) {
 
     });
     // rename study
-    fastify.put('/study/:test_name/:old_name', {
+    fastify.put('/study/:study_id', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.rename_study
     }, async function (request, reply) {
+
         var options = {
-            test_name: request.params.test_name,
-            old_name: request.params.old_name,
-            new_name: request.body.new_name,
+            study_id: request.params.study_id,
+            study_name: request.body.study_name,
             user_id: request.user.id
         };
-
-        var result = await dataAccess.redis.study.rename(options);
-        reply.send(result);
+        // var result = await dataAccess.redis.study.rename(options);
+        var result = await dataAccess.sqlite.study.rename(options);
+        // if (result.changes === "1") {
+        //
+        // }
+        reply.send({
+            study_id: result.lastID,
+            study_name: options.study_name
+        });
 
     });
     // update study

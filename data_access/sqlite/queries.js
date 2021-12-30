@@ -9,7 +9,11 @@ module.exports = {
         create: "INSERT INTO studies (user_id, study_name) VALUES (?, ?);",
         // used in test only
         // read: "SELECT * FROM studies;",
-        delete: "DELETE FROM studies WHERE id = ?;"
+        delete: "DELETE FROM studies WHERE id = ?;",
+        rename: `UPDATE studies
+                 SET study_name = ?
+                    WHERE id = ?
+                    AND user_id = ?;`
     },
     tests: {
         create_table_if_not_exists: `CREATE TABLE IF NOT EXISTS tests (

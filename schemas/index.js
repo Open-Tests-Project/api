@@ -94,26 +94,20 @@ module.exports = {
     rename_study: {
         params: {
             type: "object",
-            required: ["test_name", "old_name"],
+            required: ["study_id"],
             properties: {
-                test_name: {
-                    type: "string",
-                    minLength: 3,
-                    maxLength: 256
-                },
-                old_name: {
-                    type: "string",
-                    minLength: 3,
-                    maxLength: 256
+                study_id: {
+                    type: "integer",
+                    minimum: 1
                 }
             },
             additionalProperties: false
         },
         body: {
             type: "object",
-            required: ["new_name"],
+            required: ["study_name"],
             properties: {
-                new_name: {
+                study_name: {
                     type: "string",
                     minLength: 3,
                     maxLength: 256
