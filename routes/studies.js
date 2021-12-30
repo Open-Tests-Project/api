@@ -7,7 +7,7 @@ const schemas = require(path.resolve(process.cwd(), "schemas"));
 async function routes (fastify, options) {
 
     // create new study
-    fastify.post('/study', {
+    fastify.post('/studies', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.create_studyo
     }, async function (request, reply) {
@@ -55,7 +55,7 @@ async function routes (fastify, options) {
 
     });
 
-    fastify.get('/study/:test_name', {
+    fastify.get('/studies/:test_name', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: {
             params: schemas.test
@@ -70,7 +70,7 @@ async function routes (fastify, options) {
         reply.send(result);
 
     });
-    fastify.get('/study/test/:test_name/type/:test_type/lang/:lang', {
+    fastify.get('/studies/test/:test_name/type/:test_type/lang/:lang', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.get_study
     }, async function (request, reply) {
@@ -86,7 +86,7 @@ async function routes (fastify, options) {
         reply.send(result);
 
     });
-    fastify.delete('/study/:study_id', {
+    fastify.delete('/studies/:study_id', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: {
             params: schemas.delete_study
@@ -111,7 +111,7 @@ async function routes (fastify, options) {
 
     });
     // rename study
-    fastify.put('/study/:study_id', {
+    fastify.put('/studies/:study_id', {
         preValidation: [fastify.authenticate, fastify.authorize],
         schema: schemas.rename_study
     }, async function (request, reply) {

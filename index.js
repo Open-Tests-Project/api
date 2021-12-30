@@ -18,9 +18,9 @@ fastify.register(require("fastify-jwt"), {
 
 
 fastify.register(require(path.resolve(process.cwd(), "routes", "auth")));
-fastify.register(require(path.resolve(process.cwd(), "routes", "test")));
+fastify.register(require(path.resolve(process.cwd(), "routes", "tests")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
-fastify.register(require(path.resolve(process.cwd(), "routes", "study")));
+fastify.register(require(path.resolve(process.cwd(), "routes", "studies")));
 
 fastify.setErrorHandler(function (error, request, reply) {
 
