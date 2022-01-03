@@ -29,6 +29,26 @@ async function routes (fastify, options) {
 
     });
 
+    // update attributes
+    fastify.put('/tests/:study_id', {
+        preValidation: [fastify.authenticate, fastify.authorize],
+        schema: schemas.tests.update_attributes
+    }, async function (request, reply) {
+
+        var options = {
+            study_id: request.params.study_id,
+            test_attributes: request.body.test_attributes,
+            user_id: request.user.id
+        };
+
+        await dataAccess.sqlite.tests.update_attributes(options);
+        reply.send({
+            study_id: options.study_id,
+            test_attributes: options.test_attributes
+        });
+
+    });
+
 }
 
 

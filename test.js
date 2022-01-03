@@ -55,28 +55,39 @@ async function main () {
 
 
     // ======================================================
-    var studyResult = await dataAccess.sqlite.studies.create({
-        study_name: "ciccio"+Date.now(),
+    // var studyResult = await dataAccess.sqlite.studies.create({
+    //     study_name: "ciccio"+Date.now(),
+    //     user_id: 1
+    // });
+    //
+    // await dataAccess.sqlite.tests.create({
+    //     study_id: studyResult.lastID,
+    //     test_name: "iat",
+    //     test_type: "death_suicide",
+    //     lang: "eng",
+    //     attributes: {}
+    // });
+    //
+    // await dataAccess.sqlite.studies.delete({
+    //     study_id: studyResult.lastID
+    // });
+    //
+    // var studies = await dataAccess.sqlite.studies.read();
+    // var tests = await dataAccess.sqlite.tests.read();
+    // console.log("studies", studies.length);
+    // console.log("tests", tests.length);
+
+    // ======================================================
+    var options = {
+        study_id: 2,
+        test_attributes: {"uno":3},
         user_id: 1
+    };
+    var r = await dataAccess.sqlite.tests.update_attributes(options);
+    var s = await dataAccess.sqlite.studies.search_by_id({
+        study_id: 2
     });
-
-    await dataAccess.sqlite.tests.create({
-        study_id: studyResult.lastID,
-        test_name: "iat",
-        test_type: "death_suicide",
-        lang: "eng",
-        attributes: {}
-    });
-
-    await dataAccess.sqlite.studies.delete({
-        study_id: studyResult.lastID
-    });
-
-    var studies = await dataAccess.sqlite.studies.read();
-    var tests = await dataAccess.sqlite.tests.read();
-    console.log("studies", studies.length);
-    console.log("tests", tests.length);
-
+    console.log(r);
     process.exit(0);
 
 }

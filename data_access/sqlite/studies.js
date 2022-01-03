@@ -100,7 +100,9 @@ module.exports = function (db) {
                         resolve(rows.map(function (row) {
                             try {
                                 row.test_attributes = JSON.parse(row.test_attributes);
-                            } catch (e) {}
+                            } catch (e) {
+                                console.log(e)
+                            }
                             return row;
                         })[0]);
                     }

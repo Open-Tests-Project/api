@@ -27,6 +27,24 @@ module.exports = function (db) {
 
             });
 
+        },
+        update_attributes: function (options) {
+
+            return new Promise(function (resolve, reject) {
+                db.run(queries.tests.update_attributes, [
+                    JSON.stringify(options.test_attributes),
+                    options.study_id,
+                    options.user_id,
+                ], function (error, rows) {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(this)
+                    }
+                });
+
+            });
+
         }
 
     };

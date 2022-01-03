@@ -121,7 +121,7 @@ async function routes (fastify, options) {
             study_name: request.body.study_name,
             user_id: request.user.id
         };
-        // var result = await dataAccess.redis.study.rename(options);
+
         var result = await dataAccess.sqlite.studies.rename(options);
         reply.send({
             study_id: result.lastID,

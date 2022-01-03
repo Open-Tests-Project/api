@@ -27,6 +27,31 @@ module.exports = {
         },
         additionalProperties: false
     },
+    tests: {
+        update_attributes: {
+            params: {
+                type: "object",
+                required: ["study_id"],
+                properties: {
+                    study_id: {
+                        type: "integer",
+                        minimum: 1
+                    }
+                },
+                additionalProperties: false
+            },
+            body: {
+                type: "object",
+                required: ["test_attributes"],
+                properties: {
+                    test_attributes: {
+                        type: "object"
+                    }
+                },
+                additionalProperties: false
+            }
+        }
+    },
     get_study: {
         params: {
             type: "object",

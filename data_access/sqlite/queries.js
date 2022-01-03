@@ -28,9 +28,13 @@ module.exports = {
                                           ON DELETE CASCADE);`,
         create: `INSERT INTO tests (study_id, test_name, test_type, test_lang, test_attributes)
                                     VALUES (?, ?, ?, ?, ?);`,
-        // used in test only
-        // read: "SELECT * FROM tests;",
-        // delete: "DELETE FROM tests WHERE study_id = ?;"
+        read: `SELECT *`,
+        update_attributes: `UPDATE tests
+                             SET test_attributes = ?
+                                WHERE study_id = (
+                                    SELECT id from studies 
+                                    WHERE id = ?
+                                    AND user_id = ?);`,
     },
     studies_tests: {
         search: `SELECT s.id as study_id, s.study_name, t.study_id, t.test_name, t.test_type, t.test_lang, t.test_attributes
