@@ -32,7 +32,8 @@ async function routes (fastify, options) {
     // update attributes
     fastify.put('/tests/:study_id', {
         preValidation: [fastify.authenticate, fastify.authorize],
-        schema: schemas.tests.update_attributes
+        schema: schemas.tests.update_attributes,
+        bodyLimit: 12485760 // === 10MB
     }, async function (request, reply) {
 
         var options = {
