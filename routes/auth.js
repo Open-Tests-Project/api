@@ -7,6 +7,7 @@ const shared = require(path.resolve(process.cwd(), "shared"));
 const schemas = require(path.resolve(process.cwd(), "schemas"));
 const config = require(path.resolve(process.cwd(), "config"));
 const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
+console.log(dataAccess)
 
 const HOST = url.parse(config.BASE_URL).host;
 const PROTOCOL = url.parse(config.BASE_URL).protocol;
@@ -48,7 +49,8 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
 
-        const user = await dataAccess.user.create(request.body);
+        //const user = await dataAccess.user.create(request.body);
+        const user = await dataAccess.redis.user.create(request.body);
         const token = fastify.jwt.sign(user, signOptions);
         if (request.params.type === "web") {
             reply.setCookie(COOKIE_NAME, token, cookieOptions);

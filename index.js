@@ -23,7 +23,7 @@ fastify.register(require(path.resolve(process.cwd(), "routes", "index")));
 fastify.register(require(path.resolve(process.cwd(), "routes", "studies")));
 
 fastify.setErrorHandler(function (error, request, reply) {
-
+    
     if (error.validation) {
         return reply.status(400).send(error);
     }
