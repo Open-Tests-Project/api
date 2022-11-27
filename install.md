@@ -20,7 +20,7 @@ sudo service nginx reload
 cd ..
 
 ### api
-git clone https://github.com/Open-Tests-Project/api.git
+cd ..
 cd api
 yarn
 cp .env.example .env [edit .env file]
@@ -40,3 +40,30 @@ location /myapi {
 sudo /usr/sbin/nginx -t
 sudo service nginx reload
 ```
+
+### dashboard
+git clone https://github.com/Open-Tests-Project/dashboard.git
+cd dashboard
+yarn
+cp .env.example .env [edit .env file]
+#### edit nginx configuration
+``` nginx
+#sudo vim /etc/nginx/conf.d/default.conf
+location /dashboard/ {
+        rewrite ^/dashboard/(.*)$ /$1 break;
+        proxy_pass http://127.0.0.1:3006;
+}
+#restart nginx
+sudo /usr/sbin/nginx -t
+sudo service nginx reload
+```
+
+#### start the service
+```
+npm run start
+```
+
+### iat
+cd ..
+git clone https://github.com/Open-Tests-Project/iat.git
+

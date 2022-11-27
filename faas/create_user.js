@@ -1,7 +1,6 @@
-
 "use strict";
 
-
+const process = require("process");
 const path = require("path");
 const bcrypt = require("bcrypt");
 const config = require(path.resolve(process.cwd(), "config"));
@@ -13,8 +12,6 @@ const INCR = promisify(redis.INCR).bind(redis);
 const HMSET = promisify(redis.HMSET).bind(redis);
 const HGETALL = promisify(redis.HGETALL).bind(redis);
 const axios = require('axios');
-
-
 
 
 async function create (payload) {
@@ -47,13 +44,17 @@ async function create (payload) {
 (async function () {
 
     var payload = {
-        email: "simone",
-        password: "",
-        role: ""
+        email: "admin",
+        password: "admin",
+        role: "admin"
     };
 
-    await create(payload);
-
+    try {
+        await create(payload);
+    } catch (e) {
+        console.log(e);
+        process.exit(1);
+    }
 
     axios({
         url: config.BASE_URL + "/signin",
@@ -67,13 +68,14 @@ async function create (payload) {
             // handle success
             console.log(response.status);
             console.log(response.data);
+            process.exit(0);
         })
         .catch(function (error) {
             // handle error
             console.log(error.response.status);
             console.log(error.response.data);
+            process.exit(1);
         })
     ;
 
 })()
-
