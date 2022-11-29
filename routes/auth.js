@@ -7,7 +7,6 @@ const shared = require(path.resolve(process.cwd(), "shared"));
 const schemas = require(path.resolve(process.cwd(), "schemas"));
 const config = require(path.resolve(process.cwd(), "config"));
 const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
-console.log(dataAccess)
 
 const HOST = url.parse(config.BASE_URL).host;
 const PROTOCOL = url.parse(config.BASE_URL).protocol;

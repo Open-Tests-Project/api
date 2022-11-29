@@ -16,6 +16,7 @@ var db = new sqlite3.Database(sqliteFile, (err) => {
     // https://www.sqlite.org/json1.html#jmini
     // db.run("DROP TABLE IF EXISTS studies");
     db.run(queries.studies.create_table_if_not_exists);
+    db.run(queries.available_tests.create_table_if_not_exists);
     db.run(queries.tests.create_table_if_not_exists);
     db.run(queries.patients.create_table_if_not_exists);
 

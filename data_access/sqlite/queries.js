@@ -36,6 +36,16 @@ module.exports = {
                                     WHERE id = ?
                                     AND user_id = ?);`,
     },
+    available_tests: {
+        create_table_if_not_exists: `CREATE TABLE IF NOT EXISTS available_tests (
+                                      id INTEGER PRIMARY KEY,
+                                      test_name TEXT NOT NULL,
+                                      test_label TEXT,
+                                      test_default_attributes JSON);`,
+        read: `SELECT * FROM available_tests;`,
+        create: `INSERT INTO available_tests (test_name, test_label, test_default_attributes)
+                                    VALUES (?, ?, ?);`,
+    },
     studies_tests: {
         search: `SELECT s.id as study_id, s.study_name, t.study_id, t.test_name, t.test_type, t.test_lang, t.test_attributes
                     FROM tests t 
