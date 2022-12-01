@@ -12,42 +12,41 @@ async function routes (fastify, options) {
         schema: schemas.create_studyo
     }, async function (request, reply) {
 
-        var redisOptions = {
-            lang: request.body.lang,
-            study_name: request.body.study_name,
-            test_name: request.body.test_name,
-            test_type: request.body.test_type,
-            user_id: request.user.id
-        };
-
-        var createStudyOptions = {
-            study_name: request.body.study_name,
-            user_id: request.user.id
-        };
-
-
+        // var redisOptions = {
+        //     lang: request.body.lang,
+        //     study_name: request.body.study_name,
+        //     test_name: request.body.test_name,
+        //     test_type: request.body.test_type,
+        //     user_id: request.user.id
+        // };
         // old redis stuff
         // var result = await dataAccess.redis.study.create(redisOptions);
 
-        var studyResult = await dataAccess.sqlite.studies.create(createStudyOptions);
-        var newStudyId = studyResult.lastID;
+        const createStudyOptions = {
+            study_name: request.body.study_name,
+            user_id: request.user.id
+        };
 
-        var readAttributesOptions = {
+        const studyResult = await dataAccess.sqlite.studies.create(createStudyOptions);
+        const newStudyId = studyResult.lastID;
+
+        const readAttributesOptions = {
             test_name: request.body.test_name,
             test_type: request.body.test_type,
             lang: request.body.lang
         };
-        var createTestOptions = {
+
+        const createTestOptions = {
             study_id: newStudyId,
             test_name: request.body.test_name,
             test_type: request.body.test_type,
             lang: request.body.lang,
-            attributes: await dataAccess.redis.study.readAttributes(readAttributesOptions)
+            attributes: await dataAccess.sqlite.tests.readAttributes(readAttributesOptions)
         };
         await dataAccess.sqlite.tests.create(createTestOptions);
 
         // read the just created study
-        var newStudy = await dataAccess.sqlite.studies.search_by_id({
+        const newStudy = await dataAccess.sqlite.studies.search_by_id({
             study_id: newStudyId
         });
 
