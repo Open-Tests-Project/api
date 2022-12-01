@@ -12,6 +12,7 @@ const INCR = promisify(redis.INCR).bind(redis);
 const HMSET = promisify(redis.HMSET).bind(redis);
 const HGETALL = promisify(redis.HGETALL).bind(redis);
 const axios = require('axios');
+const dataAccess = require(path.resolve(process.cwd(), "data_access", "index"));
 
 
 async function create (payload) {
@@ -50,11 +51,15 @@ async function create (payload) {
     };
 
     try {
-        await create(payload);
+        // await create(payload);
+        const newUser = await dataAccess.sqlite.users.create(payload);
+        console.log(newUser);
+        process.exit(0);
     } catch (e) {
         console.log(e);
         process.exit(1);
     }
+
 
     axios({
         url: config.BASE_URL + "/signin",

@@ -1,6 +1,16 @@
 "use strict";
 
 module.exports = {
+    users: {
+        create_table_if_not_exists: `CREATE TABLE IF NOT EXISTS users (
+                                      id INTEGER PRIMARY KEY,
+                                      email TEXT UNIQUE NOT NULL,
+                                      password TEXT NOT NULL,
+                                      role TEXT,
+                                      scope TEXT,
+                                      created_at TEXT);`,
+        create: "INSERT INTO users (email, password, role, scope, created_at) VALUES (?, ?, ?, ?, ?);",
+    },
     studies: {
         create_table_if_not_exists: `CREATE TABLE IF NOT EXISTS studies (
                                       id INTEGER PRIMARY KEY,
