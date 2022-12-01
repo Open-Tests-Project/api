@@ -7,6 +7,28 @@ module.exports = function (db) {
 
     return {
 
+
+        read: function (options) {
+            return new Promise(function (resolve, reject) {
+                db.get(queries.tests.read, [
+                    options.test_name
+                ], function (error, row) {
+                    if (error) {
+                        console.log(error);
+                        reject(error);
+                    } else {
+                        try {
+                            resolve(JSON.parse(row.test_default_attributes));
+                        } catch (e) {
+                            resolve({});
+                        }
+
+                    }
+                });
+
+            });
+        },
+
         create: function (options) {
 
             return new Promise(function (resolve, reject) {

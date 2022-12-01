@@ -22,7 +22,10 @@ async function routes (fastify, options) {
         }
     }, async function (request, reply) {
 
-        var test = await dataAccess.redis.test.read({
+        // var test = await dataAccess.redis.test.read({
+        //     test_name: request.params.name
+        // });
+        const test = await dataAccess.sqlite.tests.read({
             test_name: request.params.name
         });
         reply.send(test || {});

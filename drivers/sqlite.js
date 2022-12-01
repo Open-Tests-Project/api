@@ -1,7 +1,7 @@
 "use strict";
 
 var path = require("path");
-var sqliteFile = path.resolve(process.cwd(), "db.sqlite");
+var sqliteFile = path.resolve(process.cwd(), "otp.sqlite");
 var queries = require(path.resolve(process.cwd(), "data_access", "sqlite", "queries"));
 var sqlite3 = require("sqlite3").verbose();
 
